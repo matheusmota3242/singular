@@ -16,7 +16,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Entity
-public class Label {
+public class Tag {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,6 @@ public class Label {
 	
 	private String name;
 	
-	@ManyToMany(mappedBy = "labels")
+	@ManyToMany(mappedBy = "tags")
 	private List<Transaction> transactions = new ArrayList<>();
 }

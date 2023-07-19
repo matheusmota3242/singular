@@ -8,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,9 +24,13 @@ public class Asset {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private BigDecimal totalAmount;
+	@NotEmpty
+	private String name;
+	
+	private BigDecimal totalAmount = BigDecimal.ZERO;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
+	@NotNull(message = "Um objeto 'asset' precisa estar associado a um usuário.")
 	private User user;
 }

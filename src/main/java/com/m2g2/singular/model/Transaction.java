@@ -27,7 +27,7 @@ public class Transaction {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(joinColumns = { @JoinColumn(name = "transaction_id") },
-	           inverseJoinColumns = { @JoinColumn(name = "label_id") }
+	           inverseJoinColumns = { @JoinColumn(name = "tag_id") }
 	)
-	private List<Label> labels = new ArrayList<>();
+	private List<Tag> tags = new ArrayList<>();
 }
