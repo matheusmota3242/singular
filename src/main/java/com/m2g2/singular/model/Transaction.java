@@ -1,5 +1,6 @@
 package com.m2g2.singular.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,4 +33,14 @@ public class Transaction {
 	           inverseJoinColumns = { @JoinColumn(name = "tag_id") }
 	)
 	private List<Tag> tags = new ArrayList<>();
+	
+	private String destinatary;
+	
+	@NotNull(message = "The value must be informed.")
+	private BigDecimal value;
+
+	@ManyToOne
+	@JoinColumn(name = "asset_id", nullable = false)
+	@NotNull(message = "A 'transaction' object must be associated to an 'asset'.")
+	private Asset asset;
 }
